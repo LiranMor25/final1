@@ -44,6 +44,7 @@ exports.login = async(req,res)=>{
                   });
 
 
+
                //Classification of participants into experimental groups
                   if(tasklev == "hard"){
                     if(risklev=="high"){
@@ -83,7 +84,6 @@ exports.login = async(req,res)=>{
 
 
                   }
-
 
                   
 
@@ -129,6 +129,7 @@ exports.login = async(req,res)=>{
       }
 
 
+
       /////----------middleware function to give access for specific pages only to logged in users  -------------------///////
 
    exports.isloggedIn = async (req,res,next)=>{
@@ -140,53 +141,53 @@ exports.login = async(req,res)=>{
             //check if the user still exists
             //global.userid = decoded.id;
             // console.log(decoded);
-
+   
             sql.query('SELECT * FROM participants WHERE PinCode = ?',decoded.id,(error,result)=>{
-
+              
                 if(!result){
                     return next();
                 }
-
+   
                 req.participant = result[0];
                 //console.log(req.participant);
                 //global.user=req.user;
                 return next();
             })
-        }
+        } 
         catch (error) {
             return next ();
         }
     }
-
-
+   
+   
     else{
        next();
     }
-
+   
    }
 
 
 
      // function that insert the click data of instructions page
 
-
+     
       exports.instructions = async(req,res)=>{
         const token = await req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'instructions';
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp},function (err, data) { 
          if (err) {
         console.log(err);
           }
           else{
-            console.log("instructions data is inserted successfully ");
+            console.log("instructions data is inserted successfully "); 
             const pageForRender = randomPage(token);
           res.status(200).redirect(`/${pageForRender}`);
           }
-
+     
          })
 
 
@@ -196,18 +197,18 @@ exports.login = async(req,res)=>{
       exports.consentform = async(req,res)=>{
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'consentform';
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp},function (err, data) { 
          if (err) {
         console.log(err);
           }
           else{
-            console.log("consentform data is inserted successfully ");
+            console.log("consentform data is inserted successfully "); 
           res.status(200).redirect('/Instructions');
           }
-
+     
          })
 
 
@@ -219,21 +220,21 @@ exports.login = async(req,res)=>{
 
       // function that insert the click data of mission page
 
-
+          
       exports.easy1 = async(req,res)=>{
         const token = await req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'easy1';
         var answer=req.body.answer;
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
         if (err) {
         console.log(err);
           }
           else{
-
+            
           const pageForRender = randomPage(token);
           res.status(200).redirect(`/${pageForRender}`);
           }
@@ -241,21 +242,21 @@ exports.login = async(req,res)=>{
         })
       }
 
-
+      
       exports.easy2 = async(req,res)=>{
         const token = await req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'easy2';
         var answer=req.body.answer;
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
         if (err) {
         console.log(err);
           }
           else{
-
+            
             const pageForRender = randomPage(token);
           res.status(200).redirect(`/${pageForRender}`);
           }
@@ -267,16 +268,16 @@ exports.login = async(req,res)=>{
         const token = await req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'easy3';
         var answer=req.body.answer;
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
         if (err) {
         console.log(err);
           }
           else{
-
+            
             const pageForRender = randomPage(token);
           res.status(200).redirect(`/${pageForRender}`);
           }
@@ -288,16 +289,16 @@ exports.login = async(req,res)=>{
         const token = await req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'easy4';
         var answer=req.body.answer;
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
         if (err) {
         console.log(err);
           }
           else{
-
+            
             const pageForRender = randomPage(token);
           res.status(200).redirect(`/${pageForRender}`);
           }
@@ -309,16 +310,16 @@ exports.login = async(req,res)=>{
         const token = await req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'easy5';
         var answer=req.body.answer;
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
         if (err) {
         console.log(err);
           }
           else{
-
+            
             const pageForRender = randomPage(token);
           res.status(200).redirect(`/${pageForRender}`);
           }
@@ -331,16 +332,16 @@ exports.login = async(req,res)=>{
         const token = await req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'easy6';
         var answer=req.body.answer;
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
         if (err) {
         console.log(err);
           }
           else{
-
+            
             const pageForRender = randomPage(token);
           res.status(200).redirect(`/${pageForRender}`);
           }
@@ -353,16 +354,16 @@ exports.login = async(req,res)=>{
         const token = await req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'easy7';
         var answer=req.body.answer;
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
         if (err) {
         console.log(err);
           }
           else{
-
+            
             const pageForRender = randomPage(token);
           res.status(200).redirect(`/${pageForRender}`);
           }
@@ -375,16 +376,16 @@ exports.login = async(req,res)=>{
         const token = await req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'easy8';
         var answer=req.body.answer;
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
         if (err) {
         console.log(err);
           }
           else{
-
+            
             const pageForRender = randomPage(token);
           res.status(200).redirect(`/${pageForRender}`);
           }
@@ -397,16 +398,16 @@ exports.login = async(req,res)=>{
         const token = await req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'easy9';
         var answer=req.body.answer;
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
         if (err) {
         console.log(err);
           }
           else{
-
+            
             const pageForRender = randomPage(token);
           res.status(200).redirect(`/${pageForRender}`);
           }
@@ -419,16 +420,16 @@ exports.login = async(req,res)=>{
         const token = await req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'easy10';
         var answer=req.body.answer;
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
         if (err) {
         console.log(err);
           }
           else{
-
+            
             const pageForRender = randomPage(token);
           res.status(200).redirect(`/${pageForRender}`);
           }
@@ -440,16 +441,16 @@ exports.login = async(req,res)=>{
         const token = await req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'easy11';
         var answer=req.body.answer;
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
         if (err) {
         console.log(err);
           }
           else{
-
+            
             const pageForRender = randomPage(token);
             res.status(200).redirect(`/${pageForRender}`);
           }
@@ -461,16 +462,16 @@ exports.login = async(req,res)=>{
         const token = await req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'easy12';
         var answer=req.body.answer;
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
         if (err) {
         console.log(err);
           }
           else{
-
+            
             const pageForRender = randomPage(token);
           res.status(200).redirect(`/${pageForRender}`);
           }
@@ -482,16 +483,16 @@ exports.login = async(req,res)=>{
         const token = await req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'easy13';
         var answer=req.body.answer;
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
         if (err) {
         console.log(err);
           }
           else{
-
+            
             const pageForRender = randomPage(token);
           res.status(200).redirect(`/${pageForRender}`);
           }
@@ -504,16 +505,16 @@ exports.login = async(req,res)=>{
         const token = await req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'easy14';
         var answer=req.body.answer;
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
         if (err) {
         console.log(err);
           }
           else{
-
+            
             const pageForRender = randomPage(token);
           res.status(200).redirect(`/${pageForRender}`);
           }
@@ -526,16 +527,16 @@ exports.login = async(req,res)=>{
         const token = await req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'easy15';
         var answer=req.body.answer;
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
         if (err) {
         console.log(err);
           }
           else{
-
+            
             const pageForRender = randomPage(token);
           res.status(200).redirect(`/${pageForRender}`);
           }
@@ -547,16 +548,16 @@ exports.login = async(req,res)=>{
         const token = await req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'easy16';
         var answer=req.body.answer;
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
         if (err) {
         console.log(err);
           }
           else{
-
+            
             const pageForRender = randomPage(token);
           res.status(200).redirect(`/${pageForRender}`);
           }
@@ -569,16 +570,16 @@ exports.login = async(req,res)=>{
         const token = await req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'easy17';
         var answer=req.body.answer;
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
         if (err) {
         console.log(err);
           }
           else{
-
+            
             const pageForRender = randomPage(token);
           res.status(200).redirect(`/${pageForRender}`);
           }
@@ -591,16 +592,16 @@ exports.login = async(req,res)=>{
         const token = await req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'easy18';
         var answer=req.body.answer;
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
         if (err) {
         console.log(err);
           }
           else{
-
+            
             const pageForRender = randomPage(token);
           res.status(200).redirect(`/${pageForRender}`);
           }
@@ -613,16 +614,16 @@ exports.login = async(req,res)=>{
         const token = await req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'easy19';
         var answer=req.body.answer;
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
         if (err) {
         console.log(err);
           }
           else{
-
+            
             const pageForRender = randomPage(token);
           res.status(200).redirect(`/${pageForRender}`);
           }
@@ -634,16 +635,16 @@ exports.login = async(req,res)=>{
         const token = await req.cookies.jwt;
         const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
         var TimeStamp = timestamp1();
-        var PinCode=decoded.id;
+        var PinCode=decoded.id; 
         var ClickType= 'easy20';
         var answer=req.body.answer;
         var insertSql = 'INSERT INTO Clicks SET ?';
-        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) {
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
         if (err) {
         console.log(err);
           }
           else{
-
+            
             const pageForRender = randomPage(token);
           res.status(200).redirect(`/${pageForRender}`);
           }
@@ -651,29 +652,645 @@ exports.login = async(req,res)=>{
         })
       }
 
+      exports.hard1 = async(req,res)=>{
+        const token = await req.cookies.jwt;
+        const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+        var TimeStamp = timestamp1();
+        var PinCode=decoded.id; 
+        var ClickType= 'hard1';
+        var answer=req.body.answer;
+        var insertSql = 'INSERT INTO Clicks SET ?';
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+        if (err) {
+        console.log(err);
+          }
+          else{
+            
+            const pageForRender = randomPage(token);
+            res.status(200).redirect(`/${pageForRender}`);
+          }
+
+        })
+      }
+
+      exports.hard2 = async(req,res)=>{
+        const token = await req.cookies.jwt;
+        const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+        var TimeStamp = timestamp1();
+        var PinCode=decoded.id; 
+        var ClickType= 'hard2';
+        var answer=req.body.answer;
+        var insertSql = 'INSERT INTO Clicks SET ?';
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+        if (err) {
+        console.log(err);
+          }
+          else{
+            
+            const pageForRender = randomPage(token);
+            res.status(200).redirect(`/${pageForRender}`);
+          }
+
+        })
+      }
+
+      exports.hard3 = async(req,res)=>{
+        const token = await req.cookies.jwt;
+        const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+        var TimeStamp = timestamp1();
+        var PinCode=decoded.id; 
+        var ClickType= 'hard3';
+        var answer=req.body.answer;
+        var insertSql = 'INSERT INTO Clicks SET ?';
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+        if (err) {
+        console.log(err);
+          }
+          else{
+            
+            const pageForRender = randomPage(token);
+            res.status(200).redirect(`/${pageForRender}`);
+          }
+
+        })
+      }
+
+      exports.hard4 = async(req,res)=>{
+        const token = await req.cookies.jwt;
+        const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+        var TimeStamp = timestamp1();
+        var PinCode=decoded.id; 
+        var ClickType= 'hard4';
+        var answer=req.body.answer;
+        var insertSql = 'INSERT INTO Clicks SET ?';
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+        if (err) {
+        console.log(err);
+          }
+          else{
+            
+            const pageForRender = randomPage(token);
+            res.status(200).redirect(`/${pageForRender}`);
+          }
+
+        })
+      }
 
 
+      exports.hard5 = async(req,res)=>{
+        const token = await req.cookies.jwt;
+        const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+        var TimeStamp = timestamp1();
+        var PinCode=decoded.id; 
+        var ClickType= 'hard5';
+        var answer=req.body.answer;
+        var insertSql = 'INSERT INTO Clicks SET ?';
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+        if (err) {
+        console.log(err);
+          }
+          else{
+            
+            const pageForRender = randomPage(token);
+            res.status(200).redirect(`/${pageForRender}`);
+          }
+
+        })
+      }
+
+      exports.hard6 = async(req,res)=>{
+        const token = await req.cookies.jwt;
+        const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+        var TimeStamp = timestamp1();
+        var PinCode=decoded.id; 
+        var ClickType= 'hard6';
+        var answer=req.body.answer;
+        var insertSql = 'INSERT INTO Clicks SET ?';
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+        if (err) {
+        console.log(err);
+          }
+          else{
+            
+            const pageForRender = randomPage(token);
+            res.status(200).redirect(`/${pageForRender}`);
+          }
+
+        })
+      }
+
+
+      exports.hard7 = async(req,res)=>{
+        const token = await req.cookies.jwt;
+        const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+        var TimeStamp = timestamp1();
+        var PinCode=decoded.id; 
+        var ClickType= 'hard7';
+        var answer=req.body.answer;
+        var insertSql = 'INSERT INTO Clicks SET ?';
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+        if (err) {
+        console.log(err);
+          }
+          else{
+            
+            const pageForRender = randomPage(token);
+            res.status(200).redirect(`/${pageForRender}`);
+          }
+
+        })
+      }
+
+      exports.hard8 = async(req,res)=>{
+        const token = await req.cookies.jwt;
+        const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+        var TimeStamp = timestamp1();
+        var PinCode=decoded.id; 
+        var ClickType= 'hard8';
+        var answer=req.body.answer;
+        var insertSql = 'INSERT INTO Clicks SET ?';
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+        if (err) {
+        console.log(err);
+          }
+          else{
+            
+            const pageForRender = randomPage(token);
+            res.status(200).redirect(`/${pageForRender}`);
+          }
+
+        })
+      }
+
+      exports.hard9 = async(req,res)=>{
+        const token = await req.cookies.jwt;
+        const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+        var TimeStamp = timestamp1();
+        var PinCode=decoded.id; 
+        var ClickType= 'hard9';
+        var answer=req.body.answer;
+        var insertSql = 'INSERT INTO Clicks SET ?';
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+        if (err) {
+        console.log(err);
+          }
+          else{
+            
+            const pageForRender = randomPage(token);
+            res.status(200).redirect(`/${pageForRender}`);
+          }
+
+        })
+      }
+
+
+      exports.hard10 = async(req,res)=>{
+        const token = await req.cookies.jwt;
+        const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+        var TimeStamp = timestamp1();
+        var PinCode=decoded.id; 
+        var ClickType= 'hard10';
+        var answer=req.body.answer;
+        var insertSql = 'INSERT INTO Clicks SET ?';
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+        if (err) {
+        console.log(err);
+          }
+          else{
+            
+            const pageForRender = randomPage(token);
+            res.status(200).redirect(`/${pageForRender}`);
+          }
+
+        })
+      }
+
+      exports.hard11 = async(req,res)=>{
+        const token = await req.cookies.jwt;
+        const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+        var TimeStamp = timestamp1();
+        var PinCode=decoded.id; 
+        var ClickType= 'hard11';
+        var answer=req.body.answer;
+        var insertSql = 'INSERT INTO Clicks SET ?';
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+        if (err) {
+        console.log(err);
+          }
+          else{
+            
+            const pageForRender = randomPage(token);
+            res.status(200).redirect(`/${pageForRender}`);
+          }
+
+        })
+      }
+
+      exports.hard12 = async(req,res)=>{
+        const token = await req.cookies.jwt;
+        const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+        var TimeStamp = timestamp1();
+        var PinCode=decoded.id; 
+        var ClickType= 'hard12';
+        var answer=req.body.answer;
+        var insertSql = 'INSERT INTO Clicks SET ?';
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+        if (err) {
+        console.log(err);
+          }
+          else{
+            
+            const pageForRender = randomPage(token);
+            res.status(200).redirect(`/${pageForRender}`);
+          }
+
+        })
+      }
+
+      exports.hard13 = async(req,res)=>{
+        const token = await req.cookies.jwt;
+        const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+        var TimeStamp = timestamp1();
+        var PinCode=decoded.id; 
+        var ClickType= 'hard13';
+        var answer=req.body.answer;
+        var insertSql = 'INSERT INTO Clicks SET ?';
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+        if (err) {
+        console.log(err);
+          }
+          else{
+            
+            const pageForRender = randomPage(token);
+            res.status(200).redirect(`/${pageForRender}`);
+          }
+
+        })
+      }
+
+      exports.hard14 = async(req,res)=>{
+        const token = await req.cookies.jwt;
+        const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+        var TimeStamp = timestamp1();
+        var PinCode=decoded.id; 
+        var ClickType= 'hard14';
+        var answer=req.body.answer;
+        var insertSql = 'INSERT INTO Clicks SET ?';
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+        if (err) {
+        console.log(err);
+          }
+          else{
+            
+            const pageForRender = randomPage(token);
+            res.status(200).redirect(`/${pageForRender}`);
+          }
+
+        })
+      }
+
+      exports.hard15 = async(req,res)=>{
+        const token = await req.cookies.jwt;
+        const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+        var TimeStamp = timestamp1();
+        var PinCode=decoded.id; 
+        var ClickType= 'hard15';
+        var answer=req.body.answer;
+        var insertSql = 'INSERT INTO Clicks SET ?';
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+        if (err) {
+        console.log(err);
+          }
+          else{
+            
+            const pageForRender = randomPage(token);
+            res.status(200).redirect(`/${pageForRender}`);
+          }
+
+        })
+      }
+
+      exports.hard16 = async(req,res)=>{
+        const token = await req.cookies.jwt;
+        const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+        var TimeStamp = timestamp1();
+        var PinCode=decoded.id; 
+        var ClickType= 'hard16';
+        var answer=req.body.answer;
+        var insertSql = 'INSERT INTO Clicks SET ?';
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+        if (err) {
+        console.log(err);
+          }
+          else{
+            
+            const pageForRender = randomPage(token);
+            res.status(200).redirect(`/${pageForRender}`);
+          }
+
+        })
+      }
+
+      exports.hard17 = async(req,res)=>{
+        const token = await req.cookies.jwt;
+        const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+        var TimeStamp = timestamp1();
+        var PinCode=decoded.id; 
+        var ClickType= 'hard17';
+        var answer=req.body.answer;
+        var insertSql = 'INSERT INTO Clicks SET ?';
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+        if (err) {
+        console.log(err);
+          }
+          else{
+            
+            const pageForRender = randomPage(token);
+            res.status(200).redirect(`/${pageForRender}`);
+          }
+
+        })
+      }
+
+      exports.hard18 = async(req,res)=>{
+        const token = await req.cookies.jwt;
+        const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+        var TimeStamp = timestamp1();
+        var PinCode=decoded.id; 
+        var ClickType= 'hard18';
+        var answer=req.body.answer;
+        var insertSql = 'INSERT INTO Clicks SET ?';
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+        if (err) {
+        console.log(err);
+          }
+          else{
+            
+            const pageForRender = randomPage(token);
+            res.status(200).redirect(`/${pageForRender}`);
+          }
+
+        })
+      }
+
+      exports.hard19 = async(req,res)=>{
+        const token = await req.cookies.jwt;
+        const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+        var TimeStamp = timestamp1();
+        var PinCode=decoded.id; 
+        var ClickType= 'hard19';
+        var answer=req.body.answer;
+        var insertSql = 'INSERT INTO Clicks SET ?';
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+        if (err) {
+        console.log(err);
+          }
+          else{
+            
+            const pageForRender = randomPage(token);
+            res.status(200).redirect(`/${pageForRender}`);
+          }
+
+        })
+      }
+
+      exports.hard20= async(req,res)=>{
+        const token = await req.cookies.jwt;
+        const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+        var TimeStamp = timestamp1();
+        var PinCode=decoded.id; 
+        var ClickType= 'hard20';
+        var answer=req.body.answer;
+        var insertSql = 'INSERT INTO Clicks SET ?';
+        sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+        if (err) {
+        console.log(err);
+          }
+          else{
+            
+            const pageForRender = randomPage(token);
+            res.status(200).redirect(`/${pageForRender}`);
+          }
+
+        })
+      }
+
+
+      
+  exports.low1= async(req,res)=>{
+    const token = await req.cookies.jwt;
+
+    const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+    var TimeStamp = timestamp1();
+    var PinCode=decoded.id; 
+    var ClickType= 'low1';
+    var answer=req.body.answer;
+    console.log(req.body);
+
+    var insertSql = 'INSERT INTO Clicks SET ?';
+    sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+     if (err) {
+    console.log(err);
+      }
+      else{
+        
+        const pageForRender = randomPage(token);
+        res.status(200).redirect(`/${pageForRender}`);
+      }
+ 
+     })
+  }
+
+  exports.low2= async(req,res)=>{
+    const token = await req.cookies.jwt;
+
+    const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+    var TimeStamp = timestamp1();
+    var PinCode=decoded.id; 
+    var ClickType= 'low2';
+    var answer=req.body.answer;
+    console.log(req.body);
+
+    var insertSql = 'INSERT INTO Clicks SET ?';
+    sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+     if (err) {
+    console.log(err);
+      }
+      else{
+        
+        const pageForRender = randomPage(token);
+        res.status(200).redirect(`/${pageForRender}`);
+      }
+ 
+     })
+  }
+
+  exports.low3= async(req,res)=>{
+    const token = await req.cookies.jwt;
+
+    const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+    var TimeStamp = timestamp1();
+    var PinCode=decoded.id; 
+    var ClickType= 'low3';
+    var answer=req.body.answer;
+    console.log(req.body);
+
+    var insertSql = 'INSERT INTO Clicks SET ?';
+    sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+     if (err) {
+    console.log(err);
+      }
+      else{
+        
+        const pageForRender = randomPage(token);
+        res.status(200).redirect(`/${pageForRender}`);
+      }
+ 
+     })
+  }
+
+  exports.low4= async(req,res)=>{
+    const token = await req.cookies.jwt;
+
+    const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+    var TimeStamp = timestamp1();
+    var PinCode=decoded.id; 
+    var ClickType= 'low4';
+    var answer=req.body.answer;
+    console.log(req.body);
+
+    var insertSql = 'INSERT INTO Clicks SET ?';
+    sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+     if (err) {
+    console.log(err);
+      }
+      else{
+        
+        const pageForRender = randomPage(token);
+        res.status(200).redirect(`/${pageForRender}`);
+      }
+ 
+     })
+  }
+
+  exports.high1= async(req,res)=>{
+    const token = await req.cookies.jwt;
+
+    const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+    var TimeStamp = timestamp1();
+    var PinCode=decoded.id; 
+    var ClickType= 'high1';
+    var answer=req.body.answer;
+    console.log(req.body);
+
+    var insertSql = 'INSERT INTO Clicks SET ?';
+    sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+     if (err) {
+    console.log(err);
+      }
+      else{
+        
+        const pageForRender = randomPage(token);
+        res.status(200).redirect(`/${pageForRender}`);
+      }
+ 
+     })
+  }
+
+
+  exports.high2= async(req,res)=>{
+    const token = await req.cookies.jwt;
+
+    const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+    var TimeStamp = timestamp1();
+    var PinCode=decoded.id; 
+    var ClickType= 'high2';
+    var answer=req.body.answer;
+    console.log(req.body);
+
+    var insertSql = 'INSERT INTO Clicks SET ?';
+    sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+     if (err) {
+    console.log(err);
+      }
+      else{
+        
+        const pageForRender = randomPage(token);
+        res.status(200).redirect(`/${pageForRender}`);
+      }
+ 
+     })
+  }
+
+
+  exports.high3= async(req,res)=>{
+    const token = await req.cookies.jwt;
+
+    const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+    var TimeStamp = timestamp1();
+    var PinCode=decoded.id; 
+    var ClickType= 'high3';
+    var answer=req.body.answer;
+    console.log(req.body);
+
+    var insertSql = 'INSERT INTO Clicks SET ?';
+    sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+     if (err) {
+    console.log(err);
+      }
+      else{
+        
+        const pageForRender = randomPage(token);
+        res.status(200).redirect(`/${pageForRender}`);
+      }
+ 
+     })
+  }
+
+  exports.high4= async(req,res)=>{
+    const token = await req.cookies.jwt;
+
+    const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
+    var TimeStamp = timestamp1();
+    var PinCode=decoded.id; 
+    var ClickType= 'high4';
+    var answer=req.body.answer;
+    console.log(req.body);
+
+    var insertSql = 'INSERT INTO Clicks SET ?';
+    sql.query(insertSql,{PinCode,ClickType,TimeStamp, answer},function (err, data) { 
+     if (err) {
+    console.log(err);
+      }
+      else{
+        
+        const pageForRender = randomPage(token);
+        res.status(200).redirect(`/${pageForRender}`);
+      }
+ 
+     })
+  }
 
   // function that insert the click data of questionnaires page
 
-
+     
   exports.questionnaires = async(req,res)=>{
     const results= req.body;
       const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
       var TimeStamp = timestamp1();
-      var PinCode=decoded.id;
+      var PinCode=decoded.id; 
       var ClickType= 'questionnaires';
       var insertSql = 'INSERT INTO Clicks SET ?';
-      sql.query(insertSql,{PinCode,ClickType,TimeStamp},function (err, data) {
+      sql.query(insertSql,{PinCode,ClickType,TimeStamp},function (err, data) { 
        if (err) {
       console.log(err);
         }
         else{
-
+  
           var insertSql2 = 'INSERT INTO Questionnaries SET ?';
-
-          results.Pincode= decoded.id;
-          sql.query(insertSql2,results,function (err, data) {
+          
+          results.Pincode= decoded.id; 
+          sql.query(insertSql2,results,function (err, data) { 
             if (err) {
               console.log(err);
                 }
@@ -682,18 +1299,18 @@ exports.login = async(req,res)=>{
                 }
               })
         }
-
+   
        })
     }
 
 
         // function that generate a mturk code for full participating
       exports.retriveCreditCode= async (req,res,next)=>{
-
+        
         try {
-
+          
           sql.query('SELECT * FROM amazoncreditcodes order by code',(error,result)=>{
-
+            
               if(!result){
                   return next();
               }
@@ -703,7 +1320,7 @@ exports.login = async(req,res)=>{
               deleteCreditCode();
               return next();
           })
-      }
+      } 
       catch (error) {
           return next ();
       }
@@ -731,31 +1348,31 @@ exports.login = async(req,res)=>{
 
       function timestamp1(){
         let date_ob = new Date();
-
+      
       // current date
       // adjust 0 before single digit date
       let date = ("0" + date_ob.getDate()).slice(-2);
-
+      
       // current month
       let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-
+      
       // current year
       let year = date_ob.getFullYear();
-
+      
       // current hours
       let hours = date_ob.getHours();
-
+      
       // current minutes
       let minutes = date_ob.getMinutes();
-
+      
       // current seconds
       let seconds = date_ob.getSeconds();
-
+      
       // prints date & time in YYYY-MM-DD HH:MM:SS format
       let time =year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds;
-
+      
       return time;
-
+      
       }
 
 
@@ -767,11 +1384,11 @@ exports.login = async(req,res)=>{
      }
 
     // function that makes the mession pages random
-
+     
     function randomPage(token){
       if(global.arrayofusers[`${token}`].Missions.length==0){
         delete global.arrayofusers[`${token}`];
-
+        
         return 'questionnaires'
       }
       else if (global.arrayofusers[`${token}`].Missions.length==2 && global.arrayofusers[`${token}`].gotlink=="no" ){
@@ -783,20 +1400,20 @@ exports.login = async(req,res)=>{
         let index = Math.floor(Math.random()*(global.arrayofusers[`${token}`].Missions.length));
         let pageToRender = global.arrayofusers[`${token}`].Missions[index];
         global.arrayofusers[`${token}`].Missions.splice(index,1);
-
+        
          return pageToRender;
 
       }
-
-
+    
+      
     }
 
 
+     
 
 
+  
 
 
-
-
-
+      
 
