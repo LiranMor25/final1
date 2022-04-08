@@ -31,6 +31,8 @@ exports.login = async(req,res)=>{
                   if(!((results[0].Device)==req.device.type)){
                       res.status(401).render('WelcomePage',{message:'Please connect via the device you were asked for'})
                   }
+
+
                   else{
 
                       const ParticipantPin = results[0].PinCode;
@@ -43,51 +45,8 @@ exports.login = async(req,res)=>{
                           {expiresIn: process.env.JWT_EXPIRES_IN
                   });
 
-
-
-               //Classification of participants into experimental groups
-                  if(tasklev == "hard"){
-                    if(risklev=="high"){
-                      const Links = ["high1","high2","high3","high4"];
-                      const linkToDisplay = randomlink(Links);
-
-                      global.arrayofusers[`${token}`]= {Link: linkToDisplay ,gotlink: "no",
-                      Missions: ["hard1","hard2","hard4","hard5","hard8","hard9","hard11","hard12","hard13","hard14","hard16","hard17"]}
-                    }
-                    else{
-                      const Links = ["low1","low2","low3","low4"];
-                      const linkToDisplay = randomlink(Links);
-
-                      global.arrayofusers[`${token}`]= {Link: linkToDisplay ,gotlink: "no",
-                      Missions: ["hard1","hard2","hard4","hard5","hard8","hard9","hard11","hard12","hard13","hard14","hard16","hard17"]}
-
-                    }
-
-                  }
-
-
-                  else{
-                    if(risklev=="high"){
-                      const Links = ["high1","high2","high3","high4"];
-                      const linkToDisplay = randomlink(Links);
-
-                      global.arrayofusers[`${token}`]= {Link: linkToDisplay ,gotlink: "no",
-                      Missions: ["easy1","easy2","easy3","easy4","easy6","easy8","easy9","easy10","easy11","easy15","easy17","easy19"]}
-                    }
-                    else{
-                      const Links = ["low1","low2","low3","low4"];
-                      const linkToDisplay = randomlink(Links);
-
-                      global.arrayofusers[`${token}`]= {Link: linkToDisplay ,gotlink: "no",
-                      Missions: ["easy1","easy2","easy3","easy4","easy6","easy8","easy9","easy10","easy11","easy15","easy17","easy19"]}
-                    }
-
-
-                  }
-
-
-
-
+}
+            
 
                   //cookie configoration
                   const cookieOptions = {
