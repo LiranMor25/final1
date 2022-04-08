@@ -33,6 +33,18 @@ exports.login = async(req,res)=>{
                   }
 
                   
+                  else{
+
+                      const ParticipantPin = results[0].PinCode;
+                      const tasklev = results[0].TaskLevel;
+                      const risklev = results[0].RiskLevel;
+                      
+        
+                      // adding token 
+                      const token = jwt.sign({id: ParticipantPin},process.env.JWT_SECRET,
+                          {expiresIn: process.env.JWT_EXPIRES_IN
+                  });
+
 
             
                 
