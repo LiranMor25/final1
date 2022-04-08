@@ -21,18 +21,17 @@
           <h1>LIVE Transfer Talk: Messi reveals 'dream' of playing in MLS in the future</h1>
 	    <h2> Barcelona captain Lionel Messi touched on a myriad of topics in a big interview with La Sexta on Sunday night,
 		 but his comments on possibly playing in Major League Soccer one day has piqued the interest of fans in the United States.</h2>
-            <input type="radio" id="Real" name="answer" value="0" required>
-            <label for="html">Real    </label><br><br>
-	    <input type="radio" id="Fake" name="answer" value="1" required>
-            <label for="html">Fake    </label><br><br>
 
-        </div>
-         
+<div class="slidecontainer">
+  <input type="range" min="1" max="100" value="0" class="slider" id="myRange" name="answer" required>
+	<label for="html">Real=100 <-> Fake=0 </label><br><br>
+</div>
+
 
 
         <button id="but2" class="form__button " type="submit">Continue</button>
       </form>
     </div>
-
+<script src="javascripts/slider.js"></script>
 </body>
 </html>

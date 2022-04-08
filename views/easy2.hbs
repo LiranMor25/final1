@@ -23,16 +23,16 @@ The 29-year-old star told Tim Bontemps of ESPN.com why he's planning to walk awa
 "I love basketball itself. But everything that comes with it? It doesn't really matter to me, in terms of my life. I enjoy the game, I enjoy being with my teammates, playing every single day.
 "Being an NBA player, this is a dream I've had since I was a kid. I think everything else that comes with it doesn't hold the same stature it once did.
 </h2>
-            <input type="radio" id="Real" name="answer" value="0" required>
-            <label for="html">Real    </label><br><br>
-	    <input type="radio" id="Fake" name="answer" value="1" required>
-            <label for="html">Fake    </label><br><br>
+            <div class="slidecontainer">
+  <input type="range" min="1" max="100" value="0" class="slider" id="myRange" name="answer" required>
+	<label for="html">Real=100 <-> Fake=0 </label><br><br>
+</div>
          
-
+ </div>
 
         <button id="but2" class="form__button " type="submit">Continue</button>
       </form>
     </div>
-
+<script src="javascripts/slider.js"></script>
 </body>
 </html>
