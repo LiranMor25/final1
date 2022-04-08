@@ -31,8 +31,6 @@ exports.login = async(req,res)=>{
                   if(!((results[0].Device)==req.device.type)){
                       res.status(401).render('WelcomePage',{message:'Please connect via the device you were asked for'})
                   }
-
-
                   else{
 
                       const ParticipantPin = results[0].PinCode;
@@ -45,8 +43,43 @@ exports.login = async(req,res)=>{
                           {expiresIn: process.env.JWT_EXPIRES_IN
                   });
 
-                      global.arrayofusers[`${token}`]= {Link: linkToDisplay ,gotlink: "no",
-                      Missions: ["easy1","easy2","easy3","easy4","easy6","easy8","easy9","easy10","easy11","easy15","easy17","easy19"]}
+
+
+               //Classification of participants into experimental groups
+                  if(tasklev == "hard"){
+                    if(risklev=="high"){
+
+
+                      global.arrayofusers[`${token}`]= {
+                     Missions: ["easy1","easy2","easy3","easy4","easy6","easy8","easy9","easy10","easy11","easy15","easy17","easy19","easy20"]}
+                    }
+                    else{
+
+
+                      global.arrayofusers[`${token}`]= {
+                     Missions: ["easy1","easy2","easy3","easy4","easy6","easy8","easy9","easy10","easy11","easy15","easy17","easy19","easy20"]}
+                    }
+
+                  }
+
+
+                  else{
+                    if(risklev=="high"){
+
+
+                      global.arrayofusers[`${token}`]= {
+                     Missions: ["easy1","easy2","easy3","easy4","easy6","easy8","easy9","easy10","easy11","easy15","easy17","easy19","easy20"]}
+                    }
+                    else{
+
+                      global.arrayofusers[`${token}`]= {
+                      Missions: ["easy1","easy2","easy3","easy4","easy6","easy8","easy9","easy10","easy11","easy15","easy17","easy19","easy20"]}
+                    }
+
+
+                  }
+
+
 
 
 
@@ -88,7 +121,6 @@ exports.login = async(req,res)=>{
         }
 
       }
-
 
 
       /////----------middleware function to give access for specific pages only to logged in users  -------------------///////
