@@ -45,6 +45,8 @@ exports.login = async(req,res)=>{
                           {expiresIn: process.env.JWT_EXPIRES_IN
                   });
 
+                      global.arrayofusers[`${token}`]= {Link: linkToDisplay ,gotlink: "no",
+                      Missions: ["easy1","easy2","easy3","easy4","easy6","easy8","easy9","easy10","easy11","easy15","easy17","easy19"]}
 
 
 
