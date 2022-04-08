@@ -1,5 +1,5 @@
 body {
-    --color-primary: rgb(38, 25, 226);
+    --color-primary: #3b5998;
     --color-primary-dark: rgb(77, 104, 155);
     --color-secondary: #101011;
     --color-error: #cc3333;
@@ -203,7 +203,7 @@ body {
     padding: 2rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: var(--border-radius);
-    background: rgba(255,255,255,0.9);
+    background: #3b5998;
     text-align: center;
     
 }
