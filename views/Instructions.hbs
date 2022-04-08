@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/stylesheets/login.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Instructions</title>
+</head>
+<body>
+
+    <div class="Instructions_container" >
+      <form class="form" id="instructions" action="/readInstructions" method="POST">
+        <div class="form__title">
+             <h1>Instructions</h1>
+        </div>
+
+        <div class="full_insrctions">
+            <p>Hello and welcome,  </p>
+            
+            <ul>
+              <li>In each of the following 12 webpages, a picture will be presented, followed by
+                   a tagging task (a question regarding the picture).</li><br>
+              <li>To complete the job, you are required to complete all 12 tagging tasks.</li><br>
+              <li>Afterwards, you will be asked to fill out a short questionnaire.</li><br>
+              <li>At the end, you will reach a completion page where you will be given a
+                 verification code to enter back in Amazon Mechanical Turk so you can get the
+                 credit for this job.</li><br>
+              <li>You are free to withdraw your participation at any time; bear in mind that credit
+                  for this job will be given only after completion of the job.</li><br>
+              <li>We respect your privacy, and we are not saving or using any of your personal data.</li>
+                
+                
+            </ul>  
+            
+        </div>
+
+
+        <div class="insCheckbox">
+                 <input type="checkbox" id="inscheckbox" name="inscheckbox"  autofocus required>
+                 <label for="inscheckbox">I have read the instructions and I agree to the above conditions. </label>
+
+        </div>
+         
+
+
+        <button id="but2" class="form__Insbutton" type="submit">Continue</button>
+      </form>
+    </div>
+
+
+
+</body>
+</html>

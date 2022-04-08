@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Welcome Page</title>
+    <link rel="stylesheet" href="/stylesheets/login.css">
+    
+</head>
+<body>
+    
+    <div class="container">
+
+        
+        <form class="form" id="login" action="/checkdevice" method="POST">
+            <h1 class="form__title">Welcome</h1>
+            {{#if message}}
+            <h3 class="alertmessage">{{message}}</h3>
+            {{/if}}
+           
+            <div class="form__input-group">
+                <input id="user" type="text" class="form__input" autofocus placeholder="Enter your entry code" name="PinCode">
+            </div>
+
+            <button id="but1" class="form__button" type="submit">Start</button>
+          
+    
+        </form>
+
+    </div>
+    <script src="javascripts/WelcomeScript.js"></script>
+    
+</body>
