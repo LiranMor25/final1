@@ -18,38 +18,71 @@ exports.login = async(req,res)=>{
             sql.query('SELECT * FROM participants WHERE PinCode = ?',[PinCode], async(error,results)=>{
               if(error) throw error;
               //let res = await results;
-
+              
               //console.log("im here")
               //console.log(results)
               //console.log(results.length)
 
               if(results.length==0){
                     res.status(401).render('WelcomePage',{message:'Pin Code incorrect'})
-              }
-
+              } 
+              
               else{
                   if(!((results[0].Device)==req.device.type)){
                       res.status(401).render('WelcomePage',{message:'Please connect via the device you were asked for'})
                   }
-
-
                   else{
 
                       const ParticipantPin = results[0].PinCode;
                       const tasklev = results[0].TaskLevel;
                       const risklev = results[0].RiskLevel;
-
-
-                      // adding token
+                      
+        
+                      // adding token 
                       const token = jwt.sign({id: ParticipantPin},process.env.JWT_SECRET,
                           {expiresIn: process.env.JWT_EXPIRES_IN
                   });
 
-                      global.arrayofusers[`${token}`]= {Link: linkToDisplay ,gotlink: "no",
-                      Missions: ["easy1","easy2","easy3","easy4","easy6","easy8","easy9","easy10","easy11","easy15","easy17","easy19"]}
 
 
+               //Classification of participants into experimental groups
+                  if(tasklev == "hard"){
+                    if(risklev=="high"){
+                      
+         
+                      global.arrayofusers[`${token}`]= {
+                     Missions: ["easy1","easy2","easy3","easy4","easy6","easy8","easy9","easy10","easy11","easy15","easy17","easy19","easy20"]}
+                    }
+                    else{
+                     
 
+                      global.arrayofusers[`${token}`]= {
+                     Missions: ["easy1","easy2","easy3","easy4","easy6","easy8","easy9","easy10","easy11","easy15","easy17","easy19","easy20"]}
+                    }
+              
+                  }
+
+
+                  else{
+                    if(risklev=="high"){
+                   
+                
+                      global.arrayofusers[`${token}`]= {
+                     Missions: ["easy1","easy2","easy3","easy4","easy6","easy8","easy9","easy10","easy11","easy15","easy17","easy19","easy20"]}
+                    }
+                    else{
+                
+                      global.arrayofusers[`${token}`]= {
+                      Missions: ["easy1","easy2","easy3","easy4","easy6","easy8","easy9","easy10","easy11","easy15","easy17","easy19","easy20"]}
+                    }
+
+
+                  }
+
+                  
+
+            
+                
                   //cookie configoration
                   const cookieOptions = {
                       expires: new Date(
@@ -61,34 +94,33 @@ exports.login = async(req,res)=>{
                   res.cookie('jwt',token,cookieOptions);
 
                   var TimeStamp = timestamp1();
-                  var PinCode=req.body.PinCode;
+                  var PinCode=req.body.PinCode; 
                   var ClickType= 'login';
                   var insertSql = 'INSERT INTO Clicks SET ?';
-                  sql.query(insertSql,{PinCode,ClickType,TimeStamp},function (err, data) {
+                  sql.query(insertSql,{PinCode,ClickType,TimeStamp},function (err, data) { 
                     if (err) {
                   console.log(err);
                     }
                     else{
-                      console.log("login data is inserted successfully ");
+                      console.log("login data is inserted successfully "); 
                     }
-
+                
                     })
 
                   // res.status(200).redirect('/Instructions');
                   res.status(200).redirect('/Instructions');
                   }
-
+      
               }
-
+      
           })
-
+        
         } catch (error) {
             console.log(error);
-
+        
         }
-
+    
       }
-
 
 
       /////----------middleware function to give access for specific pages only to logged in users  -------------------///////
