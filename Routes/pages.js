@@ -45,8 +45,8 @@ exports.login = async(req,res)=>{
                           {expiresIn: process.env.JWT_EXPIRES_IN
                   });
 
-}
-            
+
+
 
                   //cookie configoration
                   const cookieOptions = {
