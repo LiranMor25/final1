@@ -28,7 +28,7 @@ body {
 .finish_container,
 .questionnaires_container,
 .Mission_container{
-    font: 500 1rem 'Quicksand', sans-serif;
+    font: 500 1rem 'Quicksand', open sans;
 }
 
 
@@ -183,13 +183,13 @@ body {
 input[type=range] {
   -webkit-appearance: none;
   margin: 20px 0;
-  width: 75%;
+  width: 80%;
 }
 input[type=range]:focus {
   outline: none;
 }
 input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
+  width: 80%;
   height: 4px;
   cursor: pointer;
   animate: 0.2s;
@@ -210,12 +210,11 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   background: #3b5998;
 }
 .range-wrap{
-  width: 500px;
   position: relative;
 }
 .range-value{
   position: absolute;
-  top: -50%;
+  top: -10%;
 }
 .range-value span{
   width: 30px;
